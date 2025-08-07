@@ -392,22 +392,31 @@
             color: #666;
         }
 
-        /* Slack Button Section */
-        .slack-section {
+        /* Action Buttons Section */
+        .action-buttons-section {
             text-align: center;
             margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .slack-button, .preview-button {
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .slack-button {
             background: linear-gradient(135deg, #4a154b, #611f69);
             color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: inline-block;
-            transition: transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(74, 21, 75, 0.3);
         }
 
@@ -416,6 +425,76 @@
             box-shadow: 0 8px 25px rgba(74, 21, 75, 0.4);
             text-decoration: none;
             color: white;
+        }
+
+        .preview-button {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            color: white;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .preview-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close-button {
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 10px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-body {
+            padding: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
         }
 
         /* Responsive */
@@ -444,6 +523,29 @@
             .remove-rss {
                 align-self: flex-end;
                 width: fit-content;
+            }
+
+            .action-buttons-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .slack-button, .preview-button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+
+            .modal-header {
+                padding: 15px 20px;
+            }
+
+            .modal-body {
+                padding: 20px;
             }
         }
     </style>
@@ -508,6 +610,7 @@
             <p>Gogolook Internal Newsfeed 的概念起源於 DayONE 團隊的內部需求。</p>
             <p>幾個月前，團隊密切的協助公司進行和 World ID 的合作研究，為了保持對潛在合作夥伴的持續了解，團隊用 Make 自動化流程每天撈取 World ID, Worldcoin, World App 等關鍵字的相關新聞，來跟上 web3 公司的最新消息。</p>
             <p>後來團隊觀察發現，各團隊每個階段都會有較密切關注的議題需要追蹤，但繁忙之餘未必能保持資訊更新，於是團隊就實踐了 "pretotype" 的精神，簡單用 vibe coding + LLM 做了一個內部的 AI Newsletter，嘗試解決並驗證公司同仁是否也同樣具有需求，歡迎大家訂閱並給予任何 Feedback!</p>
+            <p>當然，也歡迎大家 commit / 一起迭代這個服務 😉</p>
         </div>
 
         <!-- Current Version Info Section -->
@@ -528,11 +631,27 @@
             </div>
         </div>
 
-        <!-- Slack Button Section -->
-        <div class="slack-section">
+        <!-- Action Buttons Section -->
+        <div class="action-buttons-section">
             <a href="#" class="slack-button" id="slackButton">
                 📰 AI NewsFeed in Slack
             </a>
+            <button class="preview-button" id="previewButton">
+                📧 每日新聞預覽
+            </button>
+        </div>
+
+        <!-- News Preview Modal -->
+        <div class="modal" id="newsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>📧 每日新聞預覽 - 2025/08/06</h2>
+                    <span class="close-button" id="closeModal">&times;</span>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- 新聞內容將在這裡動態載入 -->
+                </div>
+            </div>
         </div>
     </div>
 
@@ -576,10 +695,45 @@
             ]
         };
 
+        // Sample news data (from the EML file)
+        const sampleNewsData = [
+            {
+                title: "方仰寧接任新北警局長 侯友宜盼加強打詐力道",
+                source: "自由時報 社會",
+                date: "2025/08/06 上午03:14",
+                summary: "新北市警察局長由前警察專科學校長方仰寧接任，市長侯友宜期待侯友宜相信在方仰寧的領導下，新北市的治安、交通和民眾服務將更臻完善，方仰寧曾出任市府顧問，展望未來將致力於提升警政工作表現。"
+            },
+            {
+                title: "內湖母女遭詐輕生亡 家屬控警言語輕佻害命、檢不起訴原因曝",
+                source: "自由時報 社會", 
+                date: "2025/08/06 上午02:18",
+                summary: "內湖母女因遭詐騙投資1200萬元，專責情緒崩潰走上絕路，家屬指控警方言語輕佻害命，提告警察不當言論。家屬懷疑警察的慰勞對自殺者，並認為警察未能提供實質的原因。此案件引發社會關注，凸顯詐騙事件對受害者及其家屬的嚴重影響。"
+            },
+            {
+                title: "可怕！臉書一頁式廣告詐騙 監所內嫌犯鋼筋水泥都能賣",
+                source: "自由時報 社會",
+                date: "2025/08/06 上午01:11", 
+                summary: "詐騙集團利用臉書一頁式廣告詐騙旅客，在臉書上以一頁式廣告吸引民眾，宣稱從獄中所獲得的鋼筋水泥。這些原始原料的高額詐騙案例受到警察關注，但遭到不被信任的刑用。詐騙集團的行為可能影響到都市建設的聲譽，也讓民眾陷入風險之中。"
+            },
+            {
+                title: "小心有詐！偽冒台東觀光局騙 詐騙經緯線流",
+                source: "自由時報 生活",
+                date: "2025/08/06 上午04:16",
+                summary: "近期經緯線上出現偽冒「台東觀光局推廣」或「旅遊推廣」的詐騙廣告和不實經緯線，台東縣政府已指出正確名稱「台東一般未知」的觀光推廣活動。民眾注意避免詐騙，只透過官方管道取得旅遊資訊，以免遭受詐騙損失。"
+            },
+            {
+                title: "打擊桃機工程 包商涉洗錢逾3200萬元遭起訴",
+                source: "中央社 社會",
+                date: "2025/08/06 上午03:33",
+                summary: "桃機建設公司！東港涉及洗錢罪嫌犯被起訴涉及打擊桃機工程，其中一名東港公司負責人涉嫌公司負責人涉嫌，透過假交易手法詐騙取得逾3200萬元。北檢已於6日對涉案人員提起訴訟，指控涉及詐騙和洗錢等罪名。"
+            }
+        ];
+
         // Load keywords and sources on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadKeywords();
             loadSources();
+            initializeModal();
         });
 
         function loadKeywords() {
@@ -620,6 +774,88 @@
                 `;
                 sourcesDisplay.appendChild(moreItem);
             }
+        }
+
+        // Modal functionality
+        function initializeModal() {
+            const previewButton = document.getElementById('previewButton');
+            const modal = document.getElementById('newsModal');
+            const closeButton = document.getElementById('closeModal');
+            const modalBody = document.getElementById('modalBody');
+
+            // Open modal
+            previewButton.addEventListener('click', function() {
+                loadNewsPreview();
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+
+            // Close modal
+            closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close modal with ESC key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        function loadNewsPreview() {
+            const modalBody = document.getElementById('modalBody');
+            
+            let newsHTML = `
+                <div style="background: linear-gradient(135deg, #e7f1fd 0%, #ffffff 100%); padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #4a90e2;">
+                    <strong>今日摘要：</strong>共找到 13 篇相關新聞。
+                </div>
+            `;
+
+            sampleNewsData.forEach((news, index) => {
+                newsHTML += `
+                    <div style="background: white; border: 1px solid #e7f1fd; border-radius: 8px; margin-bottom: 20px; padding: 20px; transition: box-shadow 0.3s ease;">
+                        <div style="font-size: 18px; font-weight: bold; color: #0f2647; margin-bottom: 10px; line-height: 1.4;">
+                            ${index + 1}. ${news.title}
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 10px 15px; background-color: #e7f1fd; border-radius: 4px; font-size: 12px; color: #0f2647; gap: 10px;">
+                            <div>
+                                <span style="font-weight: bold; color: #0058ea; margin-right: 10px;">來源：${news.source}</span>
+                            </div>
+                            <div>
+                                <span style="color: #666; font-size: 12px;">時間：${news.date}</span>
+                            </div>
+                        </div>
+                        
+                        <div style="color: #0f2647; margin-bottom: 15px; line-height: 1.6;">
+                            ${news.summary}
+                        </div>
+                        
+                        <a href="#" style="display: inline-block; background-color: #0058ea; color: white !important; padding: 8px 16px; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s ease;">
+                            閱讀原文
+                        </a>
+                    </div>
+                `;
+            });
+
+            newsHTML += `
+                <div style="background-color: #e7f1fd; padding: 20px; text-align: center; border-top: 1px solid #008cf4; font-size: 12px; color: #0f2647; margin-top: 20px;">
+                    <p style="margin-top: 10px;">© 2025 Dayone</p>
+                </div>
+            `;
+
+            modalBody.innerHTML = newsHTML;
         }
 
         // Tags functionality

@@ -10,6 +10,8 @@ Gogolook Internal Newsfeed 的概念起源於 DayONE 團隊的內部需求。
 
 後來團隊觀察發現，各團隊每個階段都會有較密切關注的議題需要追蹤，但繁忙之餘未必能保持資訊更新，於是團隊就實踐了 "pretotype" 的精神，簡單用 vibe coding + LLM 做了一個內部的 AI Newsletter，嘗試解決並驗證公司同仁是否也同樣具有需求，歡迎大家訂閱並給予任何 Feedback!
 
+當然，也歡迎大家 commit / 一起迭代這個服務 😉
+
 ## 功能特色
 
 - ✅ **Email 驗證**：只允許 @gogolook.com 結尾的電子郵件地址
