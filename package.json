@@ -1,0 +1,14 @@
+{
+  "name": "gogolook-ai-newsletter-landing",
+  "version": "1.0.0",
+  "description": "Gogolook Internal AI Newsletter Landing Page",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site, no build needed'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["newsletter", "gogolook", "ai", "landing-page"],
+  "author": "Wayne Tang",
+  "license": "MIT"
+}

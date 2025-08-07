@@ -1,0 +1,204 @@
+{
+  "sources": [
+    {
+      "url": "https://technews.tw/feed/",
+      "name": "科技新報",
+      "description": "科技相關新聞"
+    },
+    {
+      "url": "https://news.ltn.com.tw/rss/society.xml",
+      "name": "自由時報 社會",
+      "description": "自由時報社會新聞"
+    },
+    {
+      "url": "https://news.ltn.com.tw/rss/life.xml",
+      "name": "自由時報 生活",
+      "description": "自由時報生活新聞"
+    },
+    {
+      "url": "https://news.ltn.com.tw/rss/business.xml",
+      "name": "自由時報 財經",
+      "description": "自由時報財經新聞"
+    },
+    {
+      "url": "https://news.ltn.com.tw/rss/politics.xml",
+      "name": "自由時報 政治",
+      "description": "自由時報政治新聞"
+    },
+    {
+      "url": "https://news.ltn.com.tw/rss/world.xml",
+      "name": "自由時報 國際",
+      "description": "自由時報國際新聞"
+    },
+    {
+      "url": "https://news.ltn.com.tw/rss/opinion.xml",
+      "name": "自由時報 觀點",
+      "description": "自由時報觀點評論"
+    },
+    {
+      "url": "https://feeds.feedburner.com/rsscna/social",
+      "name": "中央社 社會",
+      "description": "中央社社會新聞"
+    },
+    {
+      "url": "https://feeds.feedburner.com/rsscna/lifehealth",
+      "name": "中央社 生活健康",
+      "description": "中央社生活健康新聞"
+    },
+    {
+      "url": "https://feeds.feedburner.com/rsscna/technology",
+      "name": "中央社 科技",
+      "description": "中央社科技新聞"
+    },
+    {
+      "url": "https://feeds.feedburner.com/rsscna/finance",
+      "name": "中央社 財經",
+      "description": "中央社財經新聞"
+    },
+    {
+      "url": "https://newtalk.tw/rss/all/",
+      "name": "新頭殼 全部新聞",
+      "description": "新頭殼全部新聞"
+    },
+    {
+      "url": "https://www.upmedia.mg/createRSS.php?Type=all",
+      "name": "上報 全部新聞",
+      "description": "上報全部新聞"
+    },
+    {
+      "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "name": "BBC 世界新聞",
+      "description": "BBC 世界新聞 (英文)"
+    },
+    {
+      "url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+      "name": "紐約時報",
+      "description": "紐約時報 (英文)"
+    },
+    {
+      "url": "https://news.google.com/rss?hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
+      "name": "Google 新聞",
+      "description": "Google 台灣新聞"
+    },
+    {
+      "url": "https://news.google.com/rss/topics/CAAqLAgKIiZDQkFTRmdvSkwyMHZNR1ptZHpWbUVnVjZhQzFVVnhvQ1ZGY29BQVAB?hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant",
+      "name": "Google 科技",
+      "description": "Google 科技新聞"
+    },
+    {
+      "url": "https://news.google.com/rss/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNRFptTXpJU0JYcG9MVlJYS0FBUAE?hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant",
+      "name": "Google 台灣",
+      "description": "Google 台灣新聞"
+    },
+    {
+      "url": "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx1YlY4U0JYcG9MVlJYR2dKVVZ5Z0FQAQ?hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant",
+      "name": "Google 國際",
+      "description": "Google 國際新聞"
+    },
+    {
+      "url": "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx6TVdZU0JYcG9MVlJYR2dKVVZ5Z0FQAQ?hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant",
+      "name": "Google 商業",
+      "description": "Google 商業新聞"
+    },
+    {
+      "url": "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=C",
+      "name": "台視新聞 社會",
+      "description": "台視新聞 社會新聞"
+    },
+    {
+      "url": "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news",
+      "name": "台視新聞",
+      "description": "台視新聞"
+    },
+    {
+      "url": "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=P",
+      "name": "台視新聞 生活",
+      "description": "台視新聞 生活新聞"
+    },
+    {
+      "url": "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=G",
+      "name": "台視新聞 國際",
+      "description": "台視新聞 國際新聞"
+    },
+    {
+      "url": "https://www3.nhk.or.jp/rss/news/cat0.xml",
+      "name": "NHK 日本新聞",
+      "description": "NHK 日本新聞 (日文)"
+    },
+    {
+      "url": "https://www3.nhk.or.jp/rss/news/cat1.xml",
+      "name": "NHK 日本社會",
+      "description": "NHK 日本社會新聞 (日文)"
+    },
+    {
+      "url": "https://www3.nhk.or.jp/rss/news/cat3.xml",
+      "name": "NHK 日本科學醫療",
+      "description": "NHK 日本科學醫療 (日文)"
+    },
+    {
+      "url": "https://www3.nhk.or.jp/rss/news/cat4.xml",
+      "name": "NHK 日本政治",
+      "description": "NHK 日本政治新聞 (日文)"
+    },
+    {
+      "url": "https://www3.nhk.or.jp/rss/news/cat5.xml",
+      "name": "NHK 日本經濟",
+      "description": "NHK 日本經濟新聞 (日文)"
+    },
+    {
+      "url": "https://www3.nhk.or.jp/rss/news/cat6.xml",
+      "name": "NHK 日本國際",
+      "description": "NHK 日本國際新聞 (日文)"
+    },
+    {
+      "url": "https://www3.nhk.or.jp/rss/news/cat8.xml",
+      "name": "NHK 日本最近15項新聞",
+      "description": "NHK 日本最近15項新聞 (日文)"
+    },
+    {
+      "url": "https://www.asahi.com/rss/asahi/national.rdf",
+      "name": "朝日新聞 社會",
+      "description": "朝日新聞社會新聞 (日文)"
+    },
+    {
+      "url": "https://www.asahi.com/rss/asahi/world.rdf",
+      "name": "朝日新聞 社會",
+      "description": "朝日新聞社會新聞 (日文)"
+    },
+    {
+      "url": "https://www.asahi.com/rss/asahi/business.rdf",
+      "name": "朝日新聞 經濟",
+      "description": "朝日新聞經濟新聞 (日文)"
+    },
+    {
+      "url": "https://www.asahi.com/rss/asahi/international.rdf",
+      "name": "朝日新聞 國際",
+      "description": "朝日新聞國際新聞 (日文)"
+    },
+    {
+      "url": "https://www.asahi.com/rss/asahi/science.rdf",
+      "name": "朝日新聞 科學與科技",
+      "description": "朝日新聞科學與科技新聞 (日文)"
+    },
+    {
+      "url": "https://feed.koreatimes.co.kr/k/allnews.xml",
+      "name": "韓國時報 全部新聞",
+      "description": "韓國時報全部新聞 (英文)"
+    },
+    {
+      "url": "https://www.straitstimes.com/news/world/rss.xml",
+      "name": "新加玻 海峽時報 世界新聞",
+      "description": "新加玻 海峽時報世界新聞 (英文)"
+    },
+    {
+      "url": "https://www.bangkokpost.com/rss/data/topstories.xml",
+      "name": "曼谷郵報 頂尖新聞",
+      "description": "曼谷郵報頂尖新聞 (英文)"
+    },
+    {
+      "url": "https://www.theguardian.com/world/rss",
+      "name": "衛報 世界新聞",
+      "description": "衛報世界新聞 (英文)"
+    }
+  ]
+}
